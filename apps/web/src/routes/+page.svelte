@@ -3,4 +3,3 @@
 </script>
 
 <h1 class="text-2xl">Tasky</h1>
-<button class="btn btn-primary">Hello</button>

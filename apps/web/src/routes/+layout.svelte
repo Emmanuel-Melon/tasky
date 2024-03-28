@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { Navbar } from '@repo/ui';
 	import '../app.css';
 </script>
 
@@ -7,18 +8,7 @@
 	<meta name="description" content="Tasky" />
 </svelte:head>
 
-<div class="app">
-	<div class="md:ml-16 lg:ml-60">
-		<main class="min-h-screen-footer">
-			<slot />
-		</main>
-	</div>
-</div>
-
-<style>
-	.app {
-		display: flex;
-		flex-direction: column;
-		min-height: 100vh;
-	}
-</style>
+<Navbar />
+<main class="min-h-screen-footer p-8">
+  <slot />
+</main>
