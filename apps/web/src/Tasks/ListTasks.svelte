@@ -10,7 +10,7 @@
 	{#if tasks.length === 0} 
 	<TasksEmptyState />
 {/if}
-	{#if tasks} 
+	{#if tasks.length > 0} 
 	<ListControls />
 	<div use:autoAnimate class="space-y-4">
 		{#each tasks as task}

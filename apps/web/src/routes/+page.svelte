@@ -8,5 +8,4 @@
 
 <section class="space-y-4">
 	<ListTasks tasks={tasks} />
-	<AddNewTask />
 </section>
