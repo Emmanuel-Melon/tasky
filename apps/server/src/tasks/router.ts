@@ -12,9 +12,9 @@ tasksRouter.get('/', async (req: Request, res: Response, next: NextFunction) => 
 });
 
 tasksRouter.post('/', async (req: Request, res: Response, next: NextFunction) => {
-  const tasks = await createNewTask(req.body);
+  const task = await createNewTask(req.body);
   res.status(200).json({
-    tasks
+    task
   });
 });
 
