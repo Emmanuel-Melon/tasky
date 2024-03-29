@@ -6,7 +6,12 @@ export const listUserTasks = async (userId: string): Promise<any> => {
             Owner: true,
             TaskAssignees: true,
             Comments: true
-        }
+        },
+        orderBy: [
+            {
+              createdAt: 'desc',
+            }
+          ]
     });
     return Promise.resolve(allTasks);
 }

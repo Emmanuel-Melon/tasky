@@ -3,6 +3,8 @@
 	import Icon from '@iconify/svelte';
 	import { Avatar } from '@repo/ui';
 	import { deleteTask } from '$lib/data/tasks';
+	import { formatDateTime } from '@repo/lib/dates';
+	import TaskOverviewContextMenu from './TaskOverviewContextMenu.svelte';
 
 	const handleDelete = async () => {
 		const res = await deleteTask(task.id);
@@ -11,26 +13,14 @@
 
 <div class="card card-bordered card-compact shadow-sm bg-base-100">
 	<div class="card-body">
+		<div class="badge badge-outline gap-2 text-gray-500">
+			<Icon icon="heroicons:clock" /> {formatDateTime(task.createdAt)}
+		</div>
 		<div class="flex items-center justify-between">
 			<div>
 				<h3 class="card-title"><a href={`/tasks/${task.id}`}>{task.title}</a></h3>
 			</div>
-			<div class="flex gap-2">
-				<div class="dropdown dropdown-end">
-					<div tabIndex={0} role="button" class="btn m-1 btn-ghost btn btn-sm btn-squared">
-						<Icon icon="heroicons:ellipsis-horizontal" />
-					</div>
-					<ul
-						tabIndex={0}
-						class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
-					>
-						<li><a href="/"><Icon icon="heroicons:pencil" /> Edit Task</a></li>
-						<li>
-							<a href="/" on:click={handleDelete}><Icon icon="heroicons:trash" /> Delete Task</a>
-						</li>
-					</ul>
-				</div>
-			</div>
+			<TaskOverviewContextMenu task={task}/>
 		</div>
 		<p>{task.description}</p>
 		<div>

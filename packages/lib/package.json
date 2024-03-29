@@ -1,6 +1,9 @@
 {
-  "name": "lib",
+  "name": "@repo/lib",
   "version": "1.0.0",
   "main": "index.js",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "date-fns": "^3.6.0"
+  }
 }

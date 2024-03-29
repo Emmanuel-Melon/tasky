@@ -6,8 +6,8 @@
 	/** @type {import('./$types').ActionData} */
 	let form;
 
-	export let title = '';
-	export let description = '';
+	let title = '';
+	let description = '';
 </script>
 
 <form class="space-y-4" method="POST" action="?/saveTaskAction" use:enhance>
@@ -22,7 +22,7 @@
 		<p>Something went wrong</p>
 	{/if}
 	<textarea
-		class="textarea textarea-xs w-full"
+		class="textarea textarea-sm w-full"
 		placeholder="Task Description"
 		bind:value={description}
 	></textarea>
@@ -30,7 +30,7 @@
 		<button class="btn btn-sm btn-outline"><Icon icon="heroicons:calendar-days" /> Due Date</button>
 		<button class="btn btn-sm btn-outline"><Icon icon="heroicons:hand-raised" /> Priority</button>
 	</div>
-	<div class="card-actions justify-end items-center border-t py-2">
+	<div class="card-actions justify-end items-center">
 		<div class="flex gap-2">
 			<button class="btn btn-sm btn-ghost">Cancel</button>
 			<button class="btn btn-sm btn-primary">Save Task <Icon icon="heroicons:plus" /></button

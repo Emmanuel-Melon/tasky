@@ -1,8 +1,12 @@
 <script lang="ts">
-	import AddNewTask from './AddNewTask.svelte';
-	import { Modal } from '@repo/ui';
+    import Icon from '@iconify/svelte';
+    import AddNewTask from "./AddNewTask.svelte";
+    import { Modal } from '@repo/ui';
 </script>
 
-<Modal CTA="Add Task" heading="Create new task" icon="heroicons:plus" id="add-task">
-	<AddNewTask />
-</Modal>
+<button class="btn btn-sm btn-primary" onclick="my_modal_1.showModal()">Add Task <Icon icon="heroicons:plus" /></button>
+<dialog id="my_modal_1" class="modal">
+	<div class="modal-box">
+		<AddNewTask />
+	</div>
+</dialog>

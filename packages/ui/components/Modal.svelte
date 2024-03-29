@@ -1,9 +1,10 @@
 <script lang="ts">
     import Icon from '@iconify/svelte';
+    import type { IconifyIcon } from "@iconify/svelte";
     export let heading: String;
     export let CTA: String;
     export let id: String;
-    export let icon: String;
+    export let icon: String | IconifyIcon;
   </script>
   
   <!-- The button to open modal -->
@@ -14,7 +15,7 @@
   
   <!-- Put this part before </body> tag -->
   <input type="checkbox" id={`${id}-modal`} class="modal-toggle " />
-  <div class="modal" role="dialog">
+  <div class="modal">
     <div class="modal-box">
       <div class="flex items-center justify-between">
         <h3 class="text-xl text-bold">{heading}</h3>
