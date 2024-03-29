@@ -1,5 +1,4 @@
 <script lang="ts">
-	import Icon from '@iconify/svelte';
 	import TaskOverview from './TaskOverview.svelte';
     import ListControls from './ListControls.svelte';
 	const tasks = [

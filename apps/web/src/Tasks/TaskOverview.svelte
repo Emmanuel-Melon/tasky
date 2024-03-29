@@ -5,7 +5,7 @@
 
 <div class="card card-bordered card-compact">
     <div class="card-body">
-        <h3 class="card-title">{task.title}</h3>
+        <h3 class="card-title"><a href={`/tasks/${task.id}`}>{task.title}</a></h3>
         <p>{task.description}</p>
     </div>
 </div>
