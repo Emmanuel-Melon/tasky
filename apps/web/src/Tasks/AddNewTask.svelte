@@ -33,7 +33,7 @@
 	<div class="card-actions justify-end items-center border-t py-2">
 		<div class="flex gap-2">
 			<button class="btn btn-sm btn-ghost">Cancel</button>
-			<button class="btn btn-sm btn-primary">Save Task <Icon icon="heroicons:plus-circle" /></button
+			<button class="btn btn-sm btn-primary">Save Task <Icon icon="heroicons:plus" /></button
 			>
 		</div>
 	</div>
