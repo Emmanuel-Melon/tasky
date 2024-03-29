@@ -7,7 +7,12 @@
 <div class="card card-bordered card-compact shadow-sm">
 	<div class="card-body">
 		<div class="flex items-center justify-between">
-			<h3 class="card-title"><a href={`/tasks/${task.id}`}>{task.title}</a></h3>
+			<div>
+				<a class="link gap-2 flex items-center" href={`/users/${task.Owner.id}`}
+					>{task.Owner.name}</a
+				>
+				<h3 class="card-title"><a href={`/tasks/${task.id}`}>{task.title}</a></h3>
+			</div>
 			<div class="flex gap-2">
 				<button class="btn btn-sm btn-squared"
 					><Icon icon="heroicons:ellipsis-horizontal" />
@@ -17,12 +22,12 @@
 		<p>{task.description}</p>
 		<div class="card-actions justify-between items-center">
 			<div class="flex gap-2 items-center">
-				{#if task.users.length <= 0}
-					<div class="badge">Unassigned</div>
+				{#if task.TaskAssignees.length <= 0}
+					<div class="badge gap-2"><Icon icon="heroicons:user" /> Unassigned</div>
 				{:else}
 					<div class="flex gap-2">
-						{#each task.users as user}
-							<Avatar src={user.avatar} alt={user.name} />
+						{#each task.TaskAssignees as assignee}
+							<Avatar src={assignee.avatar} alt={assignee.name} />
 						{/each}
 					</div>
 				{/if}
