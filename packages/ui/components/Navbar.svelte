@@ -7,7 +7,7 @@
 		<div class="flex-1">
 			<a class="link text-xl" href="/">Tasky</a>
 		</div>
-		<div class="flex-none gap-4">
+		<div class="flex gap-4">
 			<button class="btn btn-sm btn-primary">Add Task <Icon icon="heroicons:plus-circle" /></button>
 			<div class="dropdown dropdown-end">
 				<div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
