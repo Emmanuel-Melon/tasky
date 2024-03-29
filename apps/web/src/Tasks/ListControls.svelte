@@ -15,8 +15,8 @@
 	</div>
 	<div class="flex gap-2">
 		<div class="join join-vertical lg:join-horizontal">
-			<button class="btn btn-sm btn-square join-item"><Icon icon="heroicons:queue-list" /></button>
-			<button class="btn btn-sm btn-square join-item"
+			<button class="btn btn-sm btn-ghost btn-square join-item"><Icon icon="heroicons:queue-list" /></button>
+			<button class="btn btn-sm btn-ghost btn-square join-item"
 				><Icon icon="heroicons:rectangle-group" /></button
 			>
 		</div>

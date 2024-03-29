@@ -2,6 +2,11 @@
 	export let task: any;
 	import Icon from '@iconify/svelte';
 	import { Avatar } from '@repo/ui';
+	import { deleteTask } from '$lib/data/tasks';
+
+	const handleDelete = async () => {
+		const res = await deleteTask(task.id);
+	};
 </script>
 
 <div class="card card-bordered card-compact shadow-sm">
@@ -14,9 +19,20 @@
 				<h3 class="card-title"><a href={`/tasks/${task.id}`}>{task.title}</a></h3>
 			</div>
 			<div class="flex gap-2">
-				<button class="btn btn-sm btn-squared"
-					><Icon icon="heroicons:ellipsis-horizontal" />
-				</button>
+				<div class="dropdown dropdown-end">
+					<div tabIndex={0} role="button" class="btn m-1 btn-ghost btn btn-sm btn-squared">
+						<Icon icon="heroicons:ellipsis-horizontal" />
+					</div>
+					<ul
+						tabIndex={0}
+						class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
+					>
+						<li><a href="/"><Icon icon="heroicons:pencil" /> Edit Task</a></li>
+						<li>
+							<a href="/" on:click={handleDelete}><Icon icon="heroicons:trash" /> Delete Task</a>
+						</li>
+					</ul>
+				</div>
 			</div>
 		</div>
 		<p>{task.description}</p>
@@ -32,7 +48,10 @@
 					</div>
 				{/if}
 
-				<div class="badge badge-md gap-2"><Icon icon="heroicons:calendar-days" /> {task.deadline}</div>
+				<div class="badge badge-md gap-2">
+					<Icon icon="heroicons:calendar-days" />
+					{task.deadline}
+				</div>
 			</div>
 			<div class="flex gap-2">
 				<div class="badge gap-2"><Icon icon="heroicons:chat-bubble-left" />3</div>

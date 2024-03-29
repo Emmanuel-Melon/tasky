@@ -12,3 +12,7 @@ export const createNewTask = async (taskAttributes: any): Promise<any> => {
         ...taskAttributes
     });
 }
+
+export const deleteTask = async (taskId: string): Promise<any> => {
+    return client.delete(`/tasks/${taskId}`);
+}
