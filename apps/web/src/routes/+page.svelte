@@ -7,6 +7,6 @@
 </script>
 
 <section class="space-y-4">
-	<AddNewTask />
 	<ListTasks tasks={tasks} />
+	<AddNewTask />
 </section>

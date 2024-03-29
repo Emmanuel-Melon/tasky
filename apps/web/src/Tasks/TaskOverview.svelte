@@ -32,7 +32,7 @@
 					</div>
 				{/if}
 
-				<div class="badge badge-md gap-2"><Icon icon="heroicons:clock" /> {task.deadline}</div>
+				<div class="badge badge-md gap-2"><Icon icon="heroicons:calendar-days" /> {task.deadline}</div>
 			</div>
 			<div class="flex gap-2">
 				<div class="badge gap-2"><Icon icon="heroicons:chat-bubble-left" />3</div>

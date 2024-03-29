@@ -9,7 +9,7 @@
 </svelte:head>
 
 <body>
-	<Navbar />
+
 	<main class="min-h-screen-footer p-8">
 		<slot />
 	</main>
