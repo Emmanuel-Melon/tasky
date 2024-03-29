@@ -1,7 +1,9 @@
 <script lang="ts">
-	import ListTasks from "../Tasks/ListTasks.svelte";
+	import { page } from '$app/stores';
+	import ListTasks from '../Tasks/ListTasks.svelte';
+	const { data: { tasks } } = $page;
 </script>
 
 <section class="space-y-4">
-	<ListTasks />
+	<ListTasks tasks={tasks} />
 </section>
