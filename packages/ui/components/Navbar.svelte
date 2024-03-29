@@ -1,15 +1,34 @@
 <script lang="ts">
-    
+    import Icon from '@iconify/svelte';
 </script>
 
-<div class="navbar bg-base-400 w-full border-b">
-  <div class="flex-2">
-    <a class="btn btn-primary text-xl"  href="/">Tasky</a>
-  </div>
-  <div class="flex">
-    <ul class="menu menu-horizontal px-1">
-      <li><a href="tasks">Tasks</a></li>
-      <li><a href="tasks">Tasks</a></li>
-    </ul>
-  </div>
-</div>
+<header>
+	<div class="navbar bg-base-100 border-b shadow-sm">
+		<div class="flex-1">
+			<a class="link text-xl" href="/">Tasky</a>
+		</div>
+		<div class="flex-none gap-4">
+			<button class="btn btn-sm btn-primary">Add Task <Icon icon="heroicons:plus-circle" /></button>
+			<div class="dropdown dropdown-end">
+				<div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+					<div class="w-10 rounded-full">
+						<img
+							alt="Tailwind CSS Navbar component"
+							src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
+						/>
+					</div>
+				</div>
+				<ul
+					tabindex="0"
+					class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+				>
+					<li>
+						<a class="justify-between" href="/profile"> Profile </a>
+					</li>
+					<li><a href="/settings">Settings</a></li>
+					<li><a href="/logout">Logout</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</header>

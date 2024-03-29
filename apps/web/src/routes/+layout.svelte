@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { Navbar } from '@repo/ui';
 	import '../app.css';
+	import { Navbar } from '@repo/ui';
 </script>
 
 <svelte:head>
@@ -9,6 +9,7 @@
 </svelte:head>
 
 <Navbar />
+
 <main class="min-h-screen-footer p-8">
-  <slot />
+	<slot />
 </main>

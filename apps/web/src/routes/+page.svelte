@@ -1,5 +1,7 @@
 <script lang="ts">
-	import { MyCounterButton } from '@repo/ui';
+	import ListTasks from "../Tasks/ListTasks.svelte";
 </script>
 
-<h1 class="text-2xl">Tasky</h1>
+<section class="space-y-4">
+	<ListTasks />
+</section>
