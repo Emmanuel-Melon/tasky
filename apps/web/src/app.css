@@ -6,3 +6,8 @@
 html, body {
     font-family: "Montserrat", Arial, Helvetica, sans-serif;
 }
+
+img {
+    height: auto;
+    width: 100%;
+}
