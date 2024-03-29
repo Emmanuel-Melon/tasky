@@ -13,7 +13,7 @@ model User {
   name          String?
   avatar        String?
   taskId        Int?
-  createdAt     DateTime? @default(now())
+  createdAt     DateTime?       @default(now())
   updatedAt     DateTime?
   Comments      Comment[]
   Tasks         Task[]
@@ -27,19 +27,35 @@ enum TaskStatus {
   CANCELLED
 }
 
+enum TaskPriority {
+  LOW
+  MEDIUM
+  HIGH
+}
+
+model TaskLabels {
+  id     Int    @id @default(autoincrement())
+  title  String
+  color  String
+  Task   Task?  @relation(fields: [taskId], references: [id])
+  taskId Int?
+}
+
 model Task {
   id            Int             @id @default(autoincrement())
   title         String
   description   String
   deadline      DateTime?
-  createdAt     DateTime? @default(now())
+  createdAt     DateTime?       @default(now())
   updatedAt     DateTime?
   assigneeId    Int?
   ownerId       Int
-  status        TaskStatus @default(COMPLETED)
+  status        TaskStatus      @default(COMPLETED)
+  priority      TaskPriority?
   Owner         User?           @relation(fields: [ownerId], references: [id])
   TaskAssignees TaskAssignees[]
   Comments      Comment[]
+  Labels        TaskLabels[]
 }
 
 model TaskAssignees {
@@ -56,7 +72,6 @@ model TaskAssignees {
 
 model Comment {
   id        Int       @id @default(autoincrement())
-  title     String
   content   String
   createdAt DateTime? @default(now())
   updatedAt DateTime?
