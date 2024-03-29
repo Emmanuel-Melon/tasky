@@ -6,6 +6,6 @@
 	const { data: { tasks } } = $page;
 </script>
 
-<section class="space-y-4">
+<section class="space-y-4 w-3/5 m-auto">
 	<ListTasks tasks={tasks} />
 </section>
