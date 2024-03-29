@@ -1,6 +1,7 @@
 <script lang="ts">
-    import Icon from '@iconify/svelte';
+	import Icon from '@iconify/svelte';
 	import TaskOverview from './TaskOverview.svelte';
+    import ListControls from './ListControls.svelte';
 	const tasks = [
 		{
 			id: 1,
@@ -24,14 +25,7 @@
 </script>
 
 <div class="space-y-4">
-    <div class="flex items-center justify-between">
-        <div class="">
-            <h3 class="text-xl">My Tasks</h3>
-        </div>
-        <div class="">
-            <button class="btn btn-primary">Add Task <Icon icon="heroicons:plus-circle" /></button>
-        </div>
-    </div>
+	<ListControls />
 	{#each tasks as task}
 		<TaskOverview {task} />
 	{/each}
