@@ -32,10 +32,10 @@
 						class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
 					>
 						<li>
-							<a class="justify-between" href="/profile"> Profile </a>
+							<a href="/profile"><Icon icon="heroicons:user" /> Profile </a>
 						</li>
-						<li><a href="/settings">Settings</a></li>
-						<li><a href="/logout">Logout</a></li>
+						<li><a href="/settings"><Icon icon="heroicons:adjustments-horizontal" /> Settings</a></li>
+						<li><a href="/logout"><Icon icon="heroicons:arrow-left-on-rectangle" />Logout</a></li>
 					</ul>
 				</div>
 			</div>

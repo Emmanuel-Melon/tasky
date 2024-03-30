@@ -23,7 +23,7 @@
 	const badgeColor = statusColors[task?.status];
 </script>
 
-<section class="space-y-2">
+<section class="space-y-2  w-4/5 m-auto">
 	<div class="flex justify-between items-center">
 		<div class="flex gap-2">
 			<button class="btn btn-sm btn-ghost"

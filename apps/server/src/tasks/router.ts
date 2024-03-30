@@ -7,7 +7,11 @@ import { listUserTasks } from './operations/list';
 const tasksRouter = Router();
 
 tasksRouter.get('/', async (req: Request, res: Response, next: NextFunction) => {
-  const tasks = await listUserTasks("1");
+  const { filter } = req.query;
+  console.log("query", filter);
+  const tasks = await listUserTasks("1", {
+    filter
+  });
   res.status(200).json({
     tasks
   });
