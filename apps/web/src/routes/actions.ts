@@ -1,42 +1,8 @@
-import { z } from 'zod';
-import type { ZodErrorMap, ZodObject } from 'zod';
-import { fail, redirect } from '@sveltejs/kit';
+import { fail } from '@sveltejs/kit';
 import { createNewTask, updateTask } from '$lib/data/tasks';
+import { parseFormData, validateFormData } from "@repo/lib/formData";
+import { taskSchema } from '@repo/lib/types/tasks';
 
-const taskSchema = z.object({
-	title: z.string(),
-	description: z.string(),
-	deadline: z.date(),
-	ownerId: z.string().optional()
-});
-
-export const parseFormData = (formData: FormData) => {
-	return Object.fromEntries(formData) as Record<string, string>;
-};
-
-type ValidatedFormData = {
-	formData: Record<string, string>;
-	errors: ZodErrorMap | null;
-};
-
-export const validateFormData = (
-	parsedFormData: Record<string, string>,
-	schema: ZodObject<any>
-): ValidatedFormData => {
-	try {
-		const formData = schema.parse(parsedFormData);
-		return {
-			formData,
-			errors: null
-		};
-	} catch (error) {
-		const errors = error.flatten();
-		return {
-			formData: parsedFormData,
-			errors
-		};
-	}
-};
 
 export const saveTaskAction = async ({ request }) => {
 	try {
@@ -89,7 +55,6 @@ export const updateTaskAction = async ({ request }) => {
 export const searchTasksAction = async ({ request }) => {
 	try {
 		const result = parseFormData(await request.formData());
-		console.log("result", result);
 	} catch (error) {
 		return fail(400, {
 			message: error.message
