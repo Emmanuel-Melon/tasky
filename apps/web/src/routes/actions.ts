@@ -5,7 +5,9 @@ import { createNewTask } from '$lib/data/tasks';
 
 const taskSchema = z.object({
 	title: z.string(),
-	description: z.string()
+	description: z.string(),
+	deadline: z.date(),
+	ownerId: z.string().optional()
 });
 
 export const parseFormData = (formData: FormData) => {
@@ -42,22 +44,33 @@ export const saveTaskAction = async ({ request }) => {
 		console.log('form data', parsedFormData);
 
 		const {
-			formData: { title, description }
+			formData: { title, deadline, description }
 		} = validateFormData(parsedFormData, taskSchema);
 
 		console.log('description', description);
 		console.log('title', title);
 		const res = await createNewTask({
-			title: "Yooo",
-			description: "Yooooo",
+			title,
+			description,
 			ownerId: 3,
+			deadline: new Date(deadline),
 			status: 'COMPLETED'
 		});
 		return res.data;
 	} catch (error) {
-		console.log(error);
 		return fail(400, {
 			message: error.message
 		});
 	}
 };
+
+export const searchTasksAction = async ({ request }) => {
+	try {
+		const result = parseFormData(await request.formData());
+		console.log("result", result);
+	} catch (error) {
+		return fail(400, {
+			message: error.message
+		});
+	}
+}

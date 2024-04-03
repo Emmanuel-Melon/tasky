@@ -24,7 +24,7 @@ export const listUserTasks = async (userId: string, options: any): Promise<Task[
         OR: [
           {
             status: {
-              equals: status.toUpperCase()
+              equals: status?.toUpperCase()
             }
           },
           {

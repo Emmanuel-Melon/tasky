@@ -14,7 +14,7 @@
 	<header>
 		<div class="navbar bg-base-100 border-b shadow-sm">
 			<div class="flex-1">
-				<a class="link text-xl" href="/">Tasky</a>
+				<a class="link link-hover text-2xl" href="/">Tasky</a>
 			</div>
 			<div class="flex gap-4">
 				<AddTaskButton />
@@ -28,7 +28,7 @@
 						</div>
 					</div>
 					<ul
-						tabindex="0"
+						tabindex="-1"
 						class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
 					>
 						<li>
