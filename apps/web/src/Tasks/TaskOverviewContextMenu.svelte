@@ -4,27 +4,41 @@
 	import { Avatar } from '@repo/ui';
 	import { deleteTask } from '$lib/data/tasks';
 	import { formatDateTime } from '@repo/lib/dates';
+	import { updateTask } from '$lib/data/tasks';
 
-	const handleDelete = async () => {
+	const onDeleteTask = async () => {
 		const res = await deleteTask(task.id);
 	};
-    // 
+
+	const onMarkTaskCompleted = async () => {
+		const res = await updateTask(task.id, {
+			status: 'COMPLETED'
+		});
+	};
 </script>
 
 <div class="dropdown dropdown-end">
 	<div tabIndex={0} role="button" class="btn m-1 btn-ghost btn btn-sm btn-squared">
 		<Icon icon="heroicons:ellipsis-horizontal" />
 	</div>
-	<ul tabIndex={0} class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-        <li>
-			<a href="/"><Icon icon="heroicons:document-duplicate" /> Duplicate</a>
-		</li>
-        <li>
-			<a href="/"><Icon icon="heroicons:check-circle" /> Mark Completed</a>
-		</li>
-        <li><a href="/"><Icon icon="heroicons:pencil" /> Edit Task</a></li>
+	<ul
+		tabIndex={0}
+		class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 space-y-2"
+	>
 		<li>
-			<a href="/" on:click={handleDelete} class="text-error"><Icon icon="heroicons:trash" /> Delete Task</a>
+			<button class="btn btn-sm btn-ghost text-start w-full" on:click={onMarkTaskCompleted}
+				><Icon icon="heroicons:check-circle" /> Mark Completed</button
+			>
+		</li>
+		<li>
+			<button class="btn btn-sm btn-ghost text-start w-full"
+				><Icon icon="heroicons:pencil" /> Edit Task</button
+			>
+		</li>
+		<li>
+			<button class="btn btn-sm btn-ghost text-start w-full text-error" on:click={onDeleteTask}
+				><Icon icon="heroicons:trash" /> Delete Task</button
+			>
 		</li>
 	</ul>
 </div>
