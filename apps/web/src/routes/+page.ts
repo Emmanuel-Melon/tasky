@@ -1,9 +1,9 @@
 import { getUserTasks } from '$lib/data/tasks';
 
 export const load = (async ({ url }) => {
-    const filter = url.searchParams.get('filter') ;
-	const tasks = await getUserTasks('1', {
-        filter
+    const status = url.searchParams.get('status') ;
+	const tasks = await getUserTasks('3', {
+        ...(status !== null && status !== undefined && { status })
     });
 
 	return {
