@@ -7,12 +7,26 @@ export const getUserById = async (userId: string): Promise<User> => {
 	return response?.data?.user;
 };
 
-export const loginUser = async (userId: string): Promise<User> => {
-	return await client.get(`/users/${userId}`);
+export const loginUser = async (userAttributes: any): Promise<User> => {
+	return await client.post(`/login`, {
+		...userAttributes
+	});
 };
 
 export const createNewUser = async (userAttributes: any): Promise<any> => {
 	return client.post('/users', {
+		...userAttributes
+	});
+};
+
+export const updateUserInfo = async (userId: string, userAttributes: any): Promise<any> => {
+	return client.put(`/users/${userId}`, {
+		...userAttributes
+	});
+};
+
+export const deleteUser = async (userAttributes: any): Promise<any> => {
+	return client.delete('/:userId', {
 		...userAttributes
 	});
 };
