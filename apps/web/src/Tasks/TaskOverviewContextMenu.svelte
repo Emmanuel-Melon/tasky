@@ -2,9 +2,8 @@
 	export let task: any;
 	import Icon from '@iconify/svelte';
 	import { Avatar } from '@repo/ui';
-	import { deleteTask } from '$lib/data/tasks';
-	import { formatDateTime } from '@repo/lib/dates';
-	import { updateTask } from '$lib/data/tasks';
+	import { deleteTask, updateTask } from '$lib/data/tasks';
+	import DeleteTaskButton from './DeleteTaskButton.svelte';
 
 	const onDeleteTask = async () => {
 		const res = await deleteTask(task.id);
@@ -31,14 +30,12 @@
 			>
 		</li>
 		<li>
-			<button class="btn btn-sm btn-ghost text-start w-full"
-				><Icon icon="heroicons:pencil" /> Edit Task</button
+			<a href={`/tasks/${task.id}/edit`} class="btn btn-sm btn-ghost text-start w-full"
+				><Icon icon="heroicons:pencil" /> Edit Task</a
 			>
 		</li>
 		<li>
-			<button class="btn btn-sm btn-ghost text-start w-full text-error" on:click={onDeleteTask}
-				><Icon icon="heroicons:trash" /> Delete Task</button
-			>
+			<DeleteTaskButton taskId={task.id} />
 		</li>
 	</ul>
 </div>

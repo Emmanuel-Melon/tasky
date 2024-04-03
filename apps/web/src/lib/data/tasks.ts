@@ -26,6 +26,13 @@ export const createNewTask = async (taskAttributes: any): Promise<any> => {
 	});
 };
 
+export const updateTask = async (taskId: string, taskAttributes: any): Promise<any> => {
+	return client.put(`/tasks/${taskId}`, {
+		...taskAttributes
+	});
+};
+
+
 export const deleteTask = async (taskId: string): Promise<any> => {
 	return client.delete(`/tasks/${taskId}`);
 };

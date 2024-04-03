@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import type { ZodErrorMap, ZodObject } from 'zod';
 import { fail } from '@sveltejs/kit';
-import { createNewTask } from '$lib/data/tasks';
+import { createNewTask, updateTask } from '$lib/data/tasks';
 
 const taskSchema = z.object({
 	title: z.string(),
@@ -41,14 +41,11 @@ export const validateFormData = (
 export const saveTaskAction = async ({ request }) => {
 	try {
 		const parsedFormData = parseFormData(await request.formData());
-		console.log('form data', parsedFormData);
 
 		const {
 			formData: { title, deadline, description }
 		} = validateFormData(parsedFormData, taskSchema);
 
-		console.log('description', description);
-		console.log('title', title);
 		const res = await createNewTask({
 			title,
 			description,
@@ -63,6 +60,32 @@ export const saveTaskAction = async ({ request }) => {
 		});
 	}
 };
+
+export const updateTaskAction = async ({ request }) => {
+	try {
+		console.log(request);
+		const parsedFormData = parseFormData(await request.formData());
+		console.log('form data', parsedFormData);
+
+		const {
+			formData
+		} = validateFormData(parsedFormData, taskSchema);
+
+	
+		const res = await updateTask("36", {
+			...formData,
+			deadline: new Date(formData.deadline)
+		});
+
+		console.log(res);
+		return res.data;
+
+	} catch (error) {
+		return fail(400, {
+			message: error.message
+		});
+	}
+}
 
 export const searchTasksAction = async ({ request }) => {
 	try {
