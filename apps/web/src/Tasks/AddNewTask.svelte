@@ -2,9 +2,21 @@
 	/** @type {import('./$types').PageData} */
 	import { enhance } from '$app/forms';
 	import Icon from '@iconify/svelte';
+	import { goto } from '$app/navigation';
+	import toast, { Toaster } from 'svelte-french-toast';
 </script>
 
-<form class="space-y-4" method="POST" action="?/saveTaskAction" use:enhance>
+<form
+	class="space-y-4"
+	method="POST"
+	action="?/saveTaskAction"
+	use:enhance={async () => {
+		toast.success('Updated Task', {
+			position: 'bottom-center'
+		});
+		await goto(`/`);
+	}}
+>
 	<input type="text" placeholder="Task Title" class="input input-sm w-full" required name="title" />
 	<label class="form-control w-full max-w-xs">
 		<div class="label">
@@ -27,3 +39,4 @@
 		</div>
 	</div>
 </form>
+<Toaster />

@@ -4,21 +4,21 @@
 	import { enhance } from '$app/forms';
 	import Icon from '@iconify/svelte';
 	import DeleteTaskButton from '../../../../Tasks/DeleteTaskButton.svelte';
+	import { goto } from '$app/navigation';
+	import toast, { Toaster } from 'svelte-french-toast';
 
 	const {
 		data: { task }
 	} = $page;
 
-    
-    let dateObject = new Date(task.deadline);
-    console.log(new Date(task.deadline).toISOString().slice(0, 10));
+	let updating = false;
 </script>
 
 <section class="space-y-4">
 	<div class="flex items-center justify-between">
 		<div class="flex gap-2">
 			<button class="btn btn-sm btn-ghost"
-				><Icon icon="heroicons:arrow-small-left" on:click={() => {}} /> Back</button
+				><Icon icon="heroicons:arrow-small-left" on:click={() => () => window.history.back()} /> Back</button
 			>
 			<h1 class="text-2xl">{task?.title}</h1>
 		</div>
@@ -29,7 +29,17 @@
 	<div class="card card-compact card-bordered shadow-sm">
 		<div class="card-body">
 			<h1 class="card-title">Editing Task {task?.id}</h1>
-			<form class="space-y-4" method="POST" action="?/updateTaskAction" use:enhance>
+			<form
+				class="space-y-4"
+				method="POST"
+				action="?/updateTaskAction"
+				use:enhance={async () => {
+					toast.success('Updated Task', {
+						position: 'bottom-center'
+					});
+					await goto('/');
+				}}
+			>
 				<input
 					type="text"
 					placeholder="Task Title"
@@ -97,9 +107,11 @@
 
 				<div class="card-actions justify-end items-center">
 					<div class="flex gap-2">
-						<button class="btn btn-sm btn-ghost">Cancel</button>
+						<button class="btn btn-sm btn-ghost" on:click={() => window.history.back()}
+							>Cancel</button
+						>
 						<button class="btn btn-sm btn-primary"
-							>Update Task <Icon icon="heroicons:plus" /></button
+							>{updating ? 'Updating...' : 'Update Task'} <Icon icon="heroicons:check" /></button
 						>
 					</div>
 				</div>
@@ -107,3 +119,4 @@
 		</div>
 	</div>
 </section>
+<Toaster />
