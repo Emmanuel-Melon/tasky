@@ -3,6 +3,7 @@ import { createNewTask } from './operations/create';
 import { deleteTask } from './operations/delete';
 import { findById } from './operations/findById';
 import { listUserTasks } from './operations/list';
+import { updateTask } from "./operations/update";
 
 const tasksRouter = Router();
 
@@ -41,6 +42,17 @@ tasksRouter.delete('/:taskId', async (req: Request, res: Response, next: NextFun
   try {
     const task = await deleteTask(req.params.taskId);
     res.status(200).json({
+      task
+    });
+  } catch (error) {
+    next(error);
+  }
+});
+
+tasksRouter.put('/:taskId', async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const task = await updateTask(req.params.taskId, req.body);
+    res.status(201).json({
       task
     });
   } catch (error) {

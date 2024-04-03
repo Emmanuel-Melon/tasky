@@ -6,6 +6,7 @@
 	import { formatDateTime } from '@repo/lib/dates';
 	import { deleteTask } from '$lib/data/tasks';
 	import TaskComments from '../../../Tasks/TaskComments.svelte';
+	import DeleteTaskButton from '../../../Tasks/DeleteTaskButton.svelte';
 	const {
 		data: { task }
 	} = $page;
@@ -23,15 +24,6 @@
 	};
 
 	const badgeColor = statusColors[task?.status];
-
-	const onDeleteTask = async () => {
-		try {
-			const res = await deleteTask(task.id);
-			goto('/');
-		} catch (error) {
-			console.log('error', error);
-		}
-	};
 </script>
 
 <section class="space-y-2 w-4/5 m-auto">
@@ -42,9 +34,10 @@
 			>
 		</div>
 		<div class="flex gap-2">
-			<button class="btn btn-sm btn-error" on:click={onDeleteTask}
-				><Icon icon="heroicons:trash" /> Delete Task</button
-			>
+			<a href={`/tasks/${task.id}/edit`} class="btn btn-sm btn-ghost"
+			><Icon icon="heroicons:pencil" />Edit Task</a
+		>
+			<DeleteTaskButton taskId={task.id} />
 		</div>
 	</div>
 	<Card>
@@ -70,14 +63,18 @@
 						{formatDateTime(task.createdAt)}
 					</div>
 				</div>
+				{#if task.deadline}
 				<div class="flex justify-between items-center">
-					<p class="text-gray-500">Due Date</p>
-					<div class="badge gap-2"><Icon icon="heroicons:calendar-days" /> {task.deadline}</div>
+					<p class="text-gray-500">Deadline</p>
+					<div class="badge gap-2"><Icon icon="heroicons:calendar-days" /> {formatDateTime(task?.deadline)}</div>
 				</div>
+				{/if}
+				{#if task.priority}
 				<div class="flex justify-between items-center">
 					<p class="text-gray-500">Priority</p>
 					<div class="badge gap-2"><Icon icon="heroicons:document-arrow-up" /> {task.priority}</div>
 				</div>
+				{/if}
 				<div class="space-y-2">
 					<p class="text-gray-500">Labels</p>
 					<div class="space-y-2">

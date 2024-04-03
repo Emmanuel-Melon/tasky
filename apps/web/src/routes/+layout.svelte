@@ -2,7 +2,6 @@
 	import '../app.css';
 	import Icon from '@iconify/svelte';
 	import { Navbar } from '@repo/ui';
-	import AddTaskButton from '../Tasks/AddTaskButton.svelte';
 </script>
 
 <svelte:head>
@@ -17,7 +16,7 @@
 				<a class="link link-hover text-2xl" href="/">Tasky</a>
 			</div>
 			<div class="flex gap-4">
-				<AddTaskButton />
+				<a href="/tasks/new" class="btn btn-sm btn-primary">Add Task <Icon icon="heroicons:plus" /></a>
 				<div class="dropdown dropdown-end">
 					<div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
 						<div class="w-10 rounded-full">
@@ -34,7 +33,9 @@
 						<li>
 							<a href="/profile"><Icon icon="heroicons:user" /> Profile </a>
 						</li>
-						<li><a href="/settings"><Icon icon="heroicons:adjustments-horizontal" /> Settings</a></li>
+						<li>
+							<a href="/settings"><Icon icon="heroicons:adjustments-horizontal" /> Settings</a>
+						</li>
 						<li><a href="/logout"><Icon icon="heroicons:arrow-left-on-rectangle" />Logout</a></li>
 					</ul>
 				</div>
