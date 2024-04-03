@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
 	export let task: any;
 	import Icon from '@iconify/svelte';
 	import { Avatar } from '@repo/ui';
@@ -12,18 +13,40 @@
 </script>
 
 <div class="card card-bordered card-compact shadow-sm bg-base-100">
-	<div class="card-body">
-		<div class="badge badge-outline gap-2 text-gray-500">
-			<Icon icon="heroicons:clock" /> {formatDateTime(task.createdAt)}
-		</div>
+	<div class="card-body space-y-2">
 		<div class="flex items-center justify-between">
 			<div>
-				<h3 class="card-title"><a href={`/tasks/${task.id}`}>{task.title}</a></h3>
+				<a href={`/tasks/${task.id}`} class="card-title link link-hover">{task.title}</a>
+				<div class="flex items-center gap-4">
+					<a
+						class="link link-hover text-gray-500 text-xs gap-2 flex items-center"
+						href={`/users/${task.Owner.id}`}><Icon icon="heroicons:user" /> {task.Owner.name}</a
+					>
+					<p class="text-gray-500 text-xs gap-2 flex items-center">
+						<Icon icon="heroicons:clock" />
+						{formatDateTime(task.createdAt)}
+					</p>
+				</div>
 			</div>
-			<TaskOverviewContextMenu task={task}/>
+			<TaskOverviewContextMenu {task} />
 		</div>
+
 		<p>{task.description}</p>
-		<div>
+		<div class="flex gap-2">
+			<div class="flex gap-2 items-center">
+				{#if task.deadline}
+					<div class="badge badge-md gap-2">
+						<Icon icon="heroicons:calendar-days" />
+						{formatDateTime(task.deadline)}
+					</div>
+				{/if}
+			</div>
+			<div class="badge badge-success gap-2 text-gray-500">
+				<Icon icon="heroicons:clock" />
+				{task.status}
+			</div>
+		</div>
+		<div class="card-actions justify-between items-center">
 			{#if task.TaskAssignees.length <= 0}
 				<div class="badge gap-2"><Icon icon="heroicons:user" /> Unassigned</div>
 			{:else}
@@ -33,22 +56,6 @@
 					{/each}
 				</div>
 			{/if}
-		</div>
-		<div class="card-actions justify-between items-center">
-			<div class="flex gap-2 items-center">
-				<div class="flex items-center gap-2">
-					<Avatar alt={task.Owner.name} />
-					<a class="link gap-2 flex items-center" href={`/users/${task.Owner.id}`}
-						>{task.Owner.name}</a
-					>
-				</div>
-				{#if task.deadline}
-					<div class="badge badge-md gap-2">
-						<Icon icon="heroicons:calendar-days" />
-						{task.deadline}
-					</div>
-				{/if}
-			</div>
 			<div class="flex gap-2">
 				<div class="badge gap-2"><Icon icon="heroicons:chat-bubble-left" />3</div>
 			</div>

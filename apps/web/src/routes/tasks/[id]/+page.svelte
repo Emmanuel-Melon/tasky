@@ -1,8 +1,10 @@
 <script lang="ts">
 	import { Avatar, Card } from '@repo/ui';
 	import { page } from '$app/stores';
+	import { goto } from '$app/navigation';
 	import Icon from '@iconify/svelte';
 	import { formatDateTime } from '@repo/lib/dates';
+	import { deleteTask } from '$lib/data/tasks';
 	import TaskComments from '../../../Tasks/TaskComments.svelte';
 	const {
 		data: { task }
@@ -21,9 +23,18 @@
 	};
 
 	const badgeColor = statusColors[task?.status];
+
+	const onDeleteTask = async () => {
+		try {
+			const res = await deleteTask(task.id);
+			goto('/');
+		} catch (error) {
+			console.log('error', error);
+		}
+	};
 </script>
 
-<section class="space-y-2">
+<section class="space-y-2 w-4/5 m-auto">
 	<div class="flex justify-between items-center">
 		<div class="flex gap-2">
 			<button class="btn btn-sm btn-ghost"
@@ -31,7 +42,9 @@
 			>
 		</div>
 		<div class="flex gap-2">
-			<button class="btn btn-sm btn-error"><Icon icon="heroicons:trash" /> Delete Task</button>
+			<button class="btn btn-sm btn-error" on:click={onDeleteTask}
+				><Icon icon="heroicons:trash" /> Delete Task</button
+			>
 		</div>
 	</div>
 	<Card>
