@@ -42,6 +42,99 @@ A settings page is available for users to manage their personal information and 
 
 <img width="1440" alt="Screenshot 2024-04-04 at 2 17 12 AM" src="https://github.com/Emmanuel-Melon/tasky/assets/21015204/7689979b-c607-4d17-ab94-07df8ea8c469">
 
+## Getting Started
+
+You can run the app to view the following methods:
+
+### Docker (docker-compose)
+
+To run the app using Docker and docker-compose, follow these steps:
+
+1. Clone the repository to your local machine:
+   ```bash
+   git clone git@github.com:Emmanuel-Melon/tasky.git
+   ```
+
+2. Navigate to the project directory:
+   ```bash
+   cd tasky
+   ```
+
+3. Ensure you have Docker and docker-compose installed on your system.
+
+4. Run the following command to start the application:
+   ```bash
+   docker-compose up
+   ```
+
+5. Once the containers are up and running, you can access the application in your web browser at [http://localhost:3000](http://localhost:3000).
+
+### Node
+
+To run the app using Node.js, follow these steps:
+
+1. Ensure you have Node.js installed on your system. If not, you can install it using Node Version Manager (NVM). Follow the instructions [here](https://github.com/nvm-sh/nvm) to install NVM.
+
+2. Switch to Node.js version 20 using NVM:
+   ```bash
+   nvm use 20
+   ```
+
+3. Install project dependencies:
+   ```bash
+   yarn
+   ```
+
+4. Set up a PostgreSQL database. You can use the PostgreSQL app on Mac [https://postgresapp.com/](https://postgresapp.com/) or a hosted instance such as Neon [https://neon.tech/](https://neon.tech/).
+
+5. Navigate to the server directory:
+   ```bash
+   cd apps/server
+   ```
+
+6. Create a `.env` file by copying the contents of `.env.example`.
+
+7. Initialize Prisma:
+   ```bash
+   yarn prisma-generate
+   ```
+
+8. Go back to the root directory and start the application:
+    ```bash
+    yarn dev
+    ```
+
+11. Access the application in your web browser at [http://localhost:3000](http://localhost:3000).
+
+### Deployed Version (URLs)
+
+The deployed version of the application can be accessed at the following URLs:
+
+- Web App: [https://example.com](https://example.com)
+- Documentation: [https://docs.example.com](https://docs.example.com)
+
+## Possible Enhancements
+
+Consider the following enhancements to further improve the application:
+
+### Push Notifications
+
+Implement push notifications to provide real-time updates and notifications to users. Notifications could include reminders for upcoming tasks, notifications for task assignments, and alerts for task updates.
+
+### Collaboration
+
+Enable collaboration features such as inviting friends or team members to collaborate on tasks or projects. Users should be able to share tasks or projects via links, collaborate on task assignments, and communicate within the application.
+
+### Importing and Exporting Content
+
+Implement features to import and export content, allowing users to easily migrate tasks, projects, or data to and from other applications or platforms. Support various file formats for import/export to enhance interoperability with different tools.
+
+### File and Media Uploads
+
+Enhance the application by enabling users to upload files and media directly related to tasks or projects. This could include uploading documents, images, videos, or other relevant files to provide additional context or resources for tasks. Implement features for file management, such as organizing attachments and linking them to tasks.
+
+These enhancements will enrich the user experience, improve collaboration, and make the application more versatile and feature-rich.
+
 ### Turborepo
 
 I've utilized Turborepo to manage our codebase efficiently. It allows me to organize and maintain our code repositories in a streamlined manner, ensuring smooth development and collaboration. By leveraging Turborepo, I can effectively manage our project's multiple client-side and server-side applications, promoting a unified development environment.
