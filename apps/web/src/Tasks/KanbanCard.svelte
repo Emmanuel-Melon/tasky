@@ -5,7 +5,7 @@
 <div class="card card-bordered card-compact bg-base-100 w-80">
 	<div class="card-body">
 		<div class="flex justify-between items-center">
-            <h3 class="card-title text-xs">{task.title}</h3>
+            <a href={`/tasks/${task.id}`} class="card-title text-xs link-hover">{task.title}</a>
         </div>
         <p class="text-gray-500">{task.description}</p>
         <div class="flex gap-2">

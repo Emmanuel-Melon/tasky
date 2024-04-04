@@ -2,6 +2,7 @@
 	import ListControls from './ListControls.svelte';
 	import TasksEmptyState from './TasksEmptyState.svelte';
 	export let tasks;
+	export let lists;
 	export let view = 'grid';
 	export let onLayoutChange = (layout: string) => {
 		view = layout;
@@ -30,7 +31,7 @@
       </div>
     {:else if view === "board"}
       <div data-animate="true">
-        <TasksBoardView {tasks} />
+        <TasksBoardView {lists} />
       </div>
     {/if}
 	{/if}

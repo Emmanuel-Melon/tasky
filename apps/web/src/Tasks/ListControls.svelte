@@ -3,8 +3,11 @@
 	import { goto } from '$app/navigation';
 	import SearchTasks from './SearchTasks.svelte';
 	export let tasks;
-	export let onLayoutChange;
-	export let view;
+	
+
+	export type LayoutView = "board" |"grid" | "list";
+	export let layoutView: LayoutView;
+	export let onLayoutChange: (layoutView: LayoutView) => void;
 
 	let query = '';
 
@@ -21,7 +24,7 @@
 
 	let selectedFilter = '';
 	let selectedSortOption = '';
-	let filterQuery;
+	let filterQuery: string;
 
 	$: filterQuery = `status=${selectedFilter}`;
 
@@ -66,16 +69,16 @@
 			<div class="flex items-center justify-between">
 				<div class="join join-vertical lg:join-horizontal">
 					<button
-						class={`btn btn-sm join-item hover:bg-accent ${view === 'list' ? 'btn-secondary' : 'btn-outline'}`}
+						class={`btn btn-sm join-item hover:bg-accent ${layoutView === 'list' ? 'btn-secondary' : 'btn-ghost'}`}
 						on:click={() => onLayoutChange('list')}><Icon icon="heroicons:queue-list" />List</button
 					>
 					<button
-						class={`btn btn-sm join-item hover:bg-accent ${view === 'grid' ? 'btn-accent' : 'btn-outline'}`}
+						class={`btn btn-sm join-item hover:bg-accent ${layoutView === 'grid' ? 'btn-accent' : 'btn-ghost'}`}
 						on:click={() => onLayoutChange('grid')}
-						><Icon icon="heroicons:rectangle-group" />Grid</button
+						><Icon icon="heroicons:squares-2x2" />Grid</button
 					>
 					<button
-					class={`btn btn-sm join-item hover:bg-accent ${view === 'grid' ? 'btn-outline' : 'btn-outline'}`}
+					class={`btn btn-sm join-item hover:bg-accent ${layoutView === 'board' ? 'btn-accent' : 'btn-ghost'}`}
 					on:click={() => onLayoutChange('board')}
 					><Icon icon="heroicons:rectangle-group" />Board</button
 				>
