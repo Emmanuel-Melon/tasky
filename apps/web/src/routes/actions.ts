@@ -29,16 +29,18 @@ export const saveTaskAction = async ({ request }) => {
 		const parsedFormData = parseFormData(await request.formData());
 
 		const {
-			formData: { title, deadline, description }
+			formData: { title, deadline, description, ownerId }
 		} = validateFormData(parsedFormData, taskSchema);
 
 		const res = await createNewTask({
 			title,
 			description,
-			ownerId: 3,
+			ownerId: parseInt(ownerId),
 			deadline: new Date(deadline),
 			status: 'COMPLETED'
 		});
+
+		console.log(res);
 		return res.data;
 	} catch (error) {
 		return fail(400, {

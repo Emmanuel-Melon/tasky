@@ -60,7 +60,7 @@
 			{/if}
 		</div>
 		{#if showAddTask}
-			<AddKanbanTask />
+			<AddKanbanTask listId={list.id} />
 		{/if}
 	</div>
 </div>

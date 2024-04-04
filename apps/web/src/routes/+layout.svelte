@@ -38,13 +38,13 @@
 						<li>
 							<a href="/settings"><Icon icon="heroicons:adjustments-horizontal" /> Settings</a>
 						</li>
-						<li><a href="/logout"><Icon icon="heroicons:arrow-left-on-rectangle" />Logout</a></li>
+						<li><a href="/login"><Icon icon="heroicons:arrow-left-on-rectangle" />Logout</a></li>
 					</ul>
 				</div>
 			</div>
 		</div>
 	</header>
-	<main class="min-h-screen-footer p-8 w-4/5">
+	<main class="min-h-screen-footer p-8 w-4/5  m-auto">
 		<slot />
 	</main>
 </body>

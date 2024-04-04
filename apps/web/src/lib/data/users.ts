@@ -2,6 +2,11 @@ import { client } from '$lib/axios';
 
 type User = Record<string, any>;
 
+export const getUsers = async (): Promise<User> => {
+	const response = await client.get("/users");
+	return response?.data?.users;
+};
+
 export const getUserById = async (userId: string): Promise<User> => {
 	const response = await client.get(`/users/${userId}`);
 	return response?.data?.user;

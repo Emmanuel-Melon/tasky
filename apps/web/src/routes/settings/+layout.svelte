@@ -21,7 +21,7 @@
     onDestroy(unsubscribe);
   </script>
   
-  <section class="mx-auto w-11/12 lg:w-3/4 space-y-2 p-2">
+  <section class="space-y-2">
     <div class="py-2 space-y-2">
       <h1 class="text-2xl">Settings</h1>
       <p>

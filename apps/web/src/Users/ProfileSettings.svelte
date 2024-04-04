@@ -2,12 +2,10 @@
 	import { enhance } from '$app/forms';
 	import Icon from '@iconify/svelte';
 	import { Input } from '@repo/ui';
-	import { goto } from '$app/navigation';
 	import toast, { Toaster } from 'svelte-french-toast';
 
 
 	export let user;
-	console.log(user);
 </script>
 
 <section>
@@ -22,11 +20,14 @@
 					toast.success('Updated Task', {
 						position: 'bottom-center'
 					});
-					await goto('/');
 				}}
 			>
 				<Input type="text" placeholder="First Name" name="firstName" />
 				<Input type="text" placeholder="Last Name" name="lastName" />
+
+				<textarea  class="textarea textarea-bordered textarea-sm w-full" placeholder="Bio" name="description">
+
+				</textarea>
 				<div class="card-actions justify-end">
 					<button class="btn btn-sm btn-primary">Save</button>
 				</div>

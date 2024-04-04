@@ -21,9 +21,6 @@
 <section class="space-y-2">
 	<div
 		class="flex gap-2 overflow-x-auto"
-		use:dndzone={{ items, flipDurationMs }}
-		on:consider={handleDndConsider}
-		on:finalize={handleDndFinalize}
 	>
 		{#each items as item (item.id)}
 			<div animate:flip={{ duration: flipDurationMs }}>

@@ -99,7 +99,7 @@
 	</div>
 	<div class="flex justify-between items-center">
 		<div>
-			<h3 class="text-xl">Tasks <span class="text-gray-500 text-sm">(15)</span></h3>
+			<h3 class="text-xl">Tasks</h3>
 		</div>
 
 		<div class="join join-vertical lg:join-horizontal">
