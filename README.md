@@ -18,6 +18,30 @@ To get started with Tasky, clone the repository and follow the setup instruction
 
 - User Registration/Authentication: Secure user accounts with registration and authentication features, ensuring personalized and secure task management.
 
+
+### Web App Overview
+
+Users can easily manage tasks by creating, editing, viewing, and deleting them. Tasks can be organized in list or grid views. The app's requirements have been fulfilled. Now, I'm working on app improvements.
+
+I decided to use Sveltekit when I noticed that the company's web app uses this technology. It appeared to be a great match for the company's tech stack. In retrospect, it was an excellent decision; I genuinely enjoy using Svelte.
+
+#### Home Page
+
+The Task List component is a central hub within the application designed to manage tasks. It offers a comprehensive set of features aimed at enhancing productivity and organization, catering to various user needs.
+The component offers sorting, filtering, and pagination features, allowing users to conveniently manage and navigate through tasks. A search feature enables quick retrieval of specific tasks, while layout customization offers flexible viewing options. Detailed task information is accessible through the Task Details View, and a seamless link to the task author's profile facilitates easy collaboration and communication.
+
+<img width="1440" alt="Screenshot 2024-04-04 at 2 07 46 AM" src="https://github.com/Emmanuel-Melon/tasky/assets/21015204/6bb3f0ad-a5eb-4fb1-95c8-030fe7d5bd28">
+
+#### Create/ Edit Task View
+
+<img width="1440" alt="Screenshot 2024-04-04 at 2 15 46 AM" src="https://github.com/Emmanuel-Melon/tasky/assets/21015204/5bb7ad90-9b67-4961-9499-cf4b15f290b4">
+
+#### Profile Settings Page
+
+A settings page is available for users to manage their personal information and preferences. Users also have access to a profile page to track their activities and view statistics related to task management.
+
+<img width="1440" alt="Screenshot 2024-04-04 at 2 17 12 AM" src="https://github.com/Emmanuel-Melon/tasky/assets/21015204/7689979b-c607-4d17-ab94-07df8ea8c469">
+
 ### Turborepo
 
 I've utilized Turborepo to manage our codebase efficiently. It allows me to organize and maintain our code repositories in a streamlined manner, ensuring smooth development and collaboration. By leveraging Turborepo, I can effectively manage our project's multiple client-side and server-side applications, promoting a unified development environment.
