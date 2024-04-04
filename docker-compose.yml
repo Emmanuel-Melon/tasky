@@ -1,0 +1,63 @@
+version: '3'
+
+services:
+  # API
+  tasky-api:
+    container_name: tasky-api
+    build:
+      context: .
+      dockerfile: ./infra/docker/Dockerfile.api
+    image: tasky-api
+    restart: always
+    ports:
+      - '8000:8000'
+    # env_file:
+    #   - path: ./apps/api/.env
+    #   #- path: ./apps/api/.env.production
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=postgres
+
+  # API
+  tasky-web:
+    container_name: tasky-web
+    build:
+      context: .
+      dockerfile: ./infra/docker/Dockerfile.web
+    image: tasky-web
+    restart: always
+    ports:
+      - '5173:5173'
+    # env_file:
+    #   - path: ./apps/api/.env
+    #   #- path: ./apps/api/.env.production
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=postgres
+
+  # POSTGRESQL    
+  tasky-pgdb:
+    image: postgres:15
+    container_name: tasky-pgdb
+    restart: always
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=postgres
+    ports:
+      - '5432:5432'
+    volumes:
+    - tasky_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U password"]
+      interval: 5s
+      timeout: 5s
+      retries: 3
+      start_period: 10s  
+
+# VOLUMES
+volumes:
+  tasky_pgdata:
+  tasky_redisdata:
