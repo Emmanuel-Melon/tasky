@@ -4,7 +4,7 @@
 	import TasksEmptyState from './TasksEmptyState.svelte';
 	import { selectedView } from './store';
 	export let tasks: any;
-	export let lists;
+	export let board;
 
 	import TasksBoardView from './TasksBoardView.svelte';
 	import TasksGridView from './TasksGridView.svelte';
@@ -21,8 +21,7 @@
 			value: 1,
 			component: TasksListView,
 			props: {
-				tasks,
-				lists
+				tasks
 			}
 		},
 		{
@@ -30,7 +29,6 @@
 			component: TasksGridView,
 			props: {
 				tasks,
-				lists
 			}
 		},
 		{
@@ -38,7 +36,7 @@
 			component: TasksBoardView,
 			props: {
 				tasks,
-				lists
+				board
 			}
 		}
 	];

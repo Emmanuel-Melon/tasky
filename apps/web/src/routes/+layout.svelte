@@ -16,7 +16,9 @@
 				<a class="link link-hover text-2xl" href="/">Tasky</a>
 			</div>
 			<div class="flex gap-4">
-				<a href="/tasks/new" class="btn btn-sm btn-primary">Add Task <Icon icon="heroicons:plus" /></a>
+				<a href="/tasks/new" class="btn btn-sm btn-primary"
+					>Add Task <Icon icon="heroicons:plus" /></a
+				>
 				<div class="dropdown dropdown-end">
 					<div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
 						<div class="w-10 rounded-full">
@@ -42,7 +44,7 @@
 			</div>
 		</div>
 	</header>
-	<main class="min-h-screen-footer p-8">
+	<main class="min-h-screen-footer p-8 w-4/5">
 		<slot />
 	</main>
 </body>

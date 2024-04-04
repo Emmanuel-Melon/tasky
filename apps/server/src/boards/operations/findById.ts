@@ -18,5 +18,8 @@ export const findListById = async (taskId: string): Promise<KanbanList | null> =
         where: {
             id: parseInt(taskId),
         },
+        include: {
+            tasks: true
+        }
     });
 }

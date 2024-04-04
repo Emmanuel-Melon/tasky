@@ -7,10 +7,10 @@ export const load = (async ({ url }) => {
         ...(status !== null && status !== undefined && { status })
     });
 
-	const lists = await getBoardLists("1");
+	const boards = await getBoardLists("1");
 
 	return {
-		lists,
+		board: boards[0],
 		tasks
 	};
 });
