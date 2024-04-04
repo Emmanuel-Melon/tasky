@@ -8,6 +8,14 @@
         ...task,
         serachQuery: `${task.title} ${task.description}`
     }));
+
+	// <div>
+	// 	{#each searchTasks as task}
+	// 		<div class="bg-base-1">
+	// 			<a href={`/tasks/${task.id}`} class="link link-hover">{task.title}</a>
+	// 		</div>
+	// 	{/each}
+	// </div>
 </script>
 
 
@@ -19,7 +27,7 @@
 			name="searchQuery"
 			placeholder="By title or description"
 		/>
-			<button class="btn join-item"><Icon icon="heroicons:calendar-days" /> Search</button>
 		</div>
 	</form>
+
 </div>
