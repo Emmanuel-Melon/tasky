@@ -2,6 +2,12 @@
 
 Tasky is a web-based application designed to help users manage their tasks efficiently. Built with a focus on usability and performance, Tasky allows users to create, view, and edit tasks with ease. This project showcases the power of SvelteKit and Turborepo in creating a modern, full-stack application.
 
+The project demo is available [here](https://tasky-o0j6.onrender.com/).
+
+You can also watch these videos to understand how the app works:
+- [Loom video 1](https://www.loom.com/share/eca06f4fbf18434b8f7a40d65610be19?sid=dc406bff-7ceb-4f6f-9fe2-a047f0fc8348)
+- [Loom video 2](https://www.loom.com/share/0689185ee28a47e09f3e1ec8599baab6?sid=2ec77c8b-08a1-4fe8-8bde-edd2fc862124)
+
 ## Getting Started
 
 To get started with Tasky, clone the repository and follow the setup instructions provided in the README files within each application and package directory.
@@ -41,6 +47,13 @@ The component offers sorting, filtering, and pagination features, allowing users
 A settings page is available for users to manage their personal information and preferences. Users also have access to a profile page to track their activities and view statistics related to task management.
 
 <img width="1440" alt="Screenshot 2024-04-04 at 2 17 12 AM" src="https://github.com/Emmanuel-Melon/tasky/assets/21015204/7689979b-c607-4d17-ab94-07df8ea8c469">
+
+#### Kanban Board View
+
+Tasky supports the creation of lists.
+
+<img width="1440" alt="Screenshot 2024-04-04 at 11 22 11 AM" src="https://github.com/Emmanuel-Melon/tasky/assets/21015204/087feca1-0d01-44bb-a2e3-d8ff9fda43bc">
+
 
 ### Fallback Pages
 
