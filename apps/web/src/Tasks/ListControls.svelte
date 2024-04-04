@@ -99,15 +99,15 @@
 	</div>
 	<div class="flex justify-between items-center">
 		<div>
-			<h3 class="text-xl">Tasks <span class="text-gray-500 text-sm">(15)</span></h3>
+			<h3 class="text-xl">Tasks</h3>
 		</div>
 
 		<div class="join join-vertical lg:join-horizontal">
 			<button class={`btn btn-sm join-item btn-outline`}
-				><Icon icon="heroicons:queue-list" />Prev</button
+				><Icon icon="heroicons:arrow-left" />Prev</button
 			>
 			<button class={`btn btn-sm join-item btn-accent`}
-				>Next <Icon icon="heroicons:rectangle-group" /></button
+				>Next <Icon icon="heroicons:arrow-right" /></button
 			>
 		</div>
 	</div>

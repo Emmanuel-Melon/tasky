@@ -26,11 +26,11 @@
 	const badgeColor = statusColors[task?.status];
 </script>
 
-<section class="space-y-2 w-4/5 m-auto">
+<section class="space-y-2">
 	<div class="flex justify-between items-center">
 		<div class="flex gap-2">
 			<button class="btn btn-sm btn-ghost"
-				><Icon icon="heroicons:arrow-small-left" on:click={() => {}} /> Back</button
+				><Icon icon="heroicons:arrow-small-left" on:click={async () => await goto("/")} /> Back</button
 			>
 		</div>
 		<div class="flex gap-2">
