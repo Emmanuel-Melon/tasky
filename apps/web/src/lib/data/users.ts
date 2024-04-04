@@ -1,6 +1,6 @@
 import { client } from '$lib/axios';
-
-type User = Record<string, any>;
+import { User } from "@prisma/client";
+import type { UserAttributes } from "@repo/lib/types/users"
 
 export const getUsers = async (): Promise<User> => {
 	const response = await client.get("/api/users");
@@ -12,32 +12,32 @@ export const getUserById = async (userId: string): Promise<User> => {
 	return response?.data?.user;
 };
 
-export const createNewUser = async (userAttributes: any): Promise<any> => {
+export const createNewUser = async (userAttributes: UserAttributes): Promise<User> => {
 	return client.post('/api/users', {
 		...userAttributes
 	});
 };
 
-export const updateUserInfo = async (userId: string, userAttributes: any): Promise<any> => {
+export const updateUserInfo = async (userId: string, userAttributes: UserAttributes): Promise<UserAttributes> => {
 	return client.put(`/api/users/${userId}`, {
 		...userAttributes
 	});
 };
 
-export const deleteUser = async (userAttributes: any): Promise<any> => {
+export const deleteUser = async (userAttributes: UserAttributes): Promise<User> => {
 	return client.delete('/api/users/:userId', {
 		...userAttributes
 	});
 };
 
 
-export const registerUser = async (userAttributes: any): Promise<any> => {
+export const registerUser = async (userAttributes: UserAttributes): Promise<UserAttributes> => {
 	return client.post('/auth/register', {
 		...userAttributes
 	});
 };
 
-export const loginUser = async (userAttributes: any): Promise<User> => {
+export const loginUser = async (userAttributes: UserAttributes): Promise<User> => {
 	return await client.post(`/auth/login`, {
 		...userAttributes
 	});

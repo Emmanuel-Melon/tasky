@@ -7,3 +7,5 @@ export const taskSchema = z.object({
 	ownerId: z.string().optional(),
 	kanbanListId: z.string().optional()
 });
+
+export type TaskAttributes = z.infer<typeof taskSchema>;
