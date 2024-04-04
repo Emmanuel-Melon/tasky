@@ -1,13 +1,15 @@
 <script lang="ts">
-	import TaskOverview from './TaskOverview.svelte';
 	import ListControls from './ListControls.svelte';
-	import autoAnimate from '@formkit/auto-animate';
 	import TasksEmptyState from './TasksEmptyState.svelte';
 	export let tasks;
 	export let view = 'grid';
 	export let onLayoutChange = (layout: string) => {
 		view = layout;
 	};
+
+	import TasksBoardView from './TasksBoardView.svelte';
+	import TasksGridView from './TasksGridView.svelte';
+	import TasksListView from './TasksListView.svelte';
 
 	$: view;
 </script>
@@ -18,10 +20,18 @@
 		<TasksEmptyState />
 	{/if}
 	{#if tasks?.length > 0}
-		<div use:autoAnimate class={`${view === 'grid' ? 'grid grid-cols-3 gap-2' : 'space-y-2'}`}>
-			{#each tasks as task}
-				<TaskOverview {task} />
-			{/each}
-		</div>
+    {#if view === "list"}
+      <div data-animate="true">
+        <TasksListView {tasks} />
+      </div>
+    {:else if view === "grid"}
+      <div data-animate="true">
+        <TasksGridView {tasks} />
+      </div>
+    {:else if view === "board"}
+      <div data-animate="true">
+        <TasksBoardView {tasks} />
+      </div>
+    {/if}
 	{/if}
 </div>
