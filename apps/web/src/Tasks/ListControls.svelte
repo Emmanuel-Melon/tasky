@@ -1,27 +1,18 @@
 <script lang="ts">
 	import Icon from '@iconify/svelte';
+	import { Tooltip } from '@repo/ui';
 	import { goto } from '$app/navigation';
 	import SearchTasks from './SearchTasks.svelte';
-	export let tasks;
-	export let onLayoutChange;
-	export let view;
+	export let tasks: any;
+	import { selectedView } from './store';
 
-	let query = '';
-
-	const filterOptions = [
-		{
-			label: 'completed',
-			key: 'completed'
-		},
-		{
-			label: 'archived',
-			key: 'archived'
-		}
-	];
+	export let onLayoutChange = (id: number) => {
+		selectedView.set(id);
+	};
 
 	let selectedFilter = '';
 	let selectedSortOption = '';
-	let filterQuery;
+	let filterQuery: string;
 
 	$: filterQuery = `status=${selectedFilter}`;
 
@@ -57,6 +48,12 @@
 	];
 
 	$: selectedFilter;
+
+	const items = [
+		{ id: 1, name: 'List', icon: 'heroicons:bars-2', highlight: 'View as List' },
+		{ id: 2, name: 'Grid', icon: 'heroicons:squares-2x2', highlight: 'View as Grid' },
+		{ id: 3, name: 'Board', icon: 'heroicons:rectangle-group', highlight: 'Kanban Board' }
+	];
 </script>
 
 <div class="space-y-2">
@@ -65,20 +62,14 @@
 			<SearchTasks {tasks} />
 			<div class="flex items-center justify-between">
 				<div class="join join-vertical lg:join-horizontal">
-					<button
-						class={`btn btn-sm join-item hover:bg-accent ${view === 'list' ? 'btn-secondary' : 'btn-outline'}`}
-						on:click={() => onLayoutChange('list')}><Icon icon="heroicons:queue-list" />List</button
-					>
-					<button
-						class={`btn btn-sm join-item hover:bg-accent ${view === 'grid' ? 'btn-accent' : 'btn-outline'}`}
-						on:click={() => onLayoutChange('grid')}
-						><Icon icon="heroicons:rectangle-group" />Grid</button
-					>
-					<button
-					class={`btn btn-sm join-item hover:bg-accent ${view === 'grid' ? 'btn-outline' : 'btn-outline'}`}
-					on:click={() => onLayoutChange('board')}
-					><Icon icon="heroicons:rectangle-group" />Board</button
-				>
+					{#each items as { id, name, icon, highlight }}
+						<Tooltip data={highlight}>
+							<button
+								class={`btn btn-sm join-item hover:bg-accent`}
+								on:click={() => onLayoutChange(id)}><Icon {icon} />{name}</button
+							>
+						</Tooltip>
+					{/each}
 				</div>
 				<div class="flex gap-2">
 					<div class="flex gap-2">
@@ -108,8 +99,9 @@
 	</div>
 	<div class="flex justify-between items-center">
 		<div>
-			<h3 class="text-xl">Tasks</h3>
+			<h3 class="text-xl">Tasks <span class="text-gray-500 text-sm">(15)</span></h3>
 		</div>
+
 		<div class="join join-vertical lg:join-horizontal">
 			<button class={`btn btn-sm join-item btn-outline`}
 				><Icon icon="heroicons:queue-list" />Prev</button

@@ -11,10 +11,10 @@ model User {
   id            Int             @id @default(autoincrement())
   email         String          @unique
   name          String?
-  firstName String?
-  lastName String?
-  location String?
-  bio String?
+  firstName     String?
+  lastName      String?
+  location      String?
+  bio           String?
   avatar        String?
   taskId        Int?
   createdAt     DateTime?       @default(now())
@@ -22,6 +22,7 @@ model User {
   Comments      Comment[]
   Tasks         Task[]
   TaskAssignees TaskAssignees[]
+  KanbanBoard   KanbanBoard[]
 }
 
 enum TaskStatus {
@@ -60,6 +61,8 @@ model Task {
   TaskAssignees TaskAssignees[]
   Comments      Comment[]
   Labels        TaskLabels[]
+  KanbanList    KanbanList?     @relation(fields: [kanbanListId], references: [id])
+  kanbanListId  Int?
 }
 
 model TaskAssignees {
@@ -83,4 +86,21 @@ model Comment {
   taskId    Int
   author    User      @relation(fields: [authorId], references: [id])
   Task      Task      @relation(fields: [taskId], references: [id])
+}
+
+model KanbanBoard {
+  id      Int          @id @default(autoincrement())
+  title   String
+  owner   User         @relation(fields: [ownerId], references: [id])
+  ownerId Int
+  lists   KanbanList[]
+}
+
+model KanbanList {
+  id       Int         @id @default(autoincrement())
+  title    String
+  position Int         @default(autoincrement()) // Change this to determine the order of the lists
+  board    KanbanBoard @relation(fields: [boardId], references: [id])
+  boardId  Int
+  tasks    Task[]
 }

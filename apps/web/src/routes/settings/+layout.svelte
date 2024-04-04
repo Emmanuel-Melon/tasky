@@ -1,6 +1,5 @@
 <script lang="ts">
     import { onDestroy } from "svelte";
-    import "iconify-icon";
     import { selectedItem } from "./store";
     import autoAnimate from "@formkit/auto-animate";
   

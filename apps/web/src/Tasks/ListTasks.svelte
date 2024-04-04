@@ -1,27 +1,55 @@
 <script lang="ts">
-	import TaskOverview from './TaskOverview.svelte';
+	import { onDestroy } from 'svelte';
 	import ListControls from './ListControls.svelte';
-	import autoAnimate from '@formkit/auto-animate';
 	import TasksEmptyState from './TasksEmptyState.svelte';
-	export let tasks;
-	export let view = 'grid';
-	export let onLayoutChange = (layout: string) => {
-		view = layout;
-	};
+	import { selectedView } from './store';
+	export let tasks: any;
+	export let board;
 
-	$: view;
+	import TasksBoardView from './TasksBoardView.svelte';
+	import TasksGridView from './TasksGridView.svelte';
+	import TasksListView from './TasksListView.svelte';
+
+	let currentItem: number;
+
+	const unsubscribe = selectedView.subscribe((value) => {
+		currentItem = value - 1;
+	});
+
+	const items = [
+		{
+			value: 1,
+			component: TasksListView,
+			props: {
+				tasks
+			}
+		},
+		{
+			value: 2,
+			component: TasksGridView,
+			props: {
+				tasks,
+			}
+		},
+		{
+			value: 3,
+			component: TasksBoardView,
+			props: {
+				tasks,
+				board
+			}
+		}
+	];
+
+	onDestroy(unsubscribe);
 </script>
 
 <div class="space-y-2">
-	<ListControls {tasks} {onLayoutChange} {view} />
+	<ListControls {tasks} />
 	{#if tasks?.length === 0}
 		<TasksEmptyState />
 	{/if}
 	{#if tasks?.length > 0}
-		<div use:autoAnimate class={`${view === 'grid' ? 'grid grid-cols-3 gap-2' : 'space-y-2'}`}>
-			{#each tasks as task}
-				<TaskOverview {task} />
-			{/each}
-		</div>
+		<svelte:component this={items[currentItem].component} {...items[currentItem].props} />
 	{/if}
 </div>
