@@ -11,12 +11,10 @@ tasksRouter.get(
   '/:userId/tasks',
   async (req: Request<any, any, any>, res: Response, next: NextFunction) => {
     try {
-      const { orderBy, priority, status, sortOrder } = req.query;
+      // console.log("query", req.query);
+      const { orderBy, priority, status, sortOrder, page, items } = req.query;
       const tasks = await listUserTasks(req.params.userId, {
-        priority,
-        status,
-        sortOrder,
-        orderBy
+        query: req.query
       });
       res.status(200).json({
         tasks
