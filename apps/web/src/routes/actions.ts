@@ -27,7 +27,7 @@ export const saveTaskAction = async ({ request }) => {
 	}
 };
 
-export const updateTaskAction = async ({ request }) => {
+export const updateTaskAction = async ({ request, params }) => {
 	try {
 		const parsedFormData = parseFormData(await request.formData());
 		const {
@@ -35,7 +35,7 @@ export const updateTaskAction = async ({ request }) => {
 		} = validateFormData(parsedFormData, taskSchema);
 
 	
-		const result = await updateTask("66", {
+		const result = await updateTask(params.id, {
 			...formData,
 			deadline: new Date(formData.deadline)
 		});

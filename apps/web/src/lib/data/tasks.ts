@@ -3,13 +3,12 @@ import { client } from '$lib/axios';
 type Task = Record<string, any>;
 
 export const getUserTasks = async (userId: string, options = {}): Promise<Task[]> => {
-	const { status } = options;
-	console.log(status);
+	const { query } = options;
+	console.log("query", query);
 
-	let urlString = `/tasks/${userId}/tasks`;
-
-	if (status !== null && status !== undefined) {
-		urlString += `?status=${status}`;
+	let urlString: string = `/tasks/${userId}/tasks`;
+	if(query) {
+		urlString = `${urlString}?/${query}`
 	}
 
 	const res = await client.get(urlString);

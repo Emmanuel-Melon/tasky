@@ -2,6 +2,8 @@
 	import '../app.css';
 	import Icon from '@iconify/svelte';
 	import { Navbar } from '@repo/ui';
+
+	const userId = 3;
 </script>
 
 <svelte:head>
@@ -31,7 +33,7 @@
 						class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
 					>
 						<li>
-							<a href="/profile"><Icon icon="heroicons:user" /> Profile </a>
+							<a href={`/users/${userId}`}><Icon icon="heroicons:user" /> Profile </a>
 						</li>
 						<li>
 							<a href="/settings"><Icon icon="heroicons:adjustments-horizontal" /> Settings</a>

@@ -10,40 +10,48 @@ export const optionsSchema = z.object({
     .string()
     .refine((value) => value === 'asc' || value === 'desc', {
       message: 'Sort order must be either "asc" or "desc"'
-    })
+    }),
+    items: z.any(),
 });
 
 export type Options = z.infer<typeof optionsSchema>;
 
 export const listUserTasks = async (userId: string, options: any): Promise<Task[]> => {
-  const { priority, status, orderBy, sortOrder } = options;
-  return prisma.task.findMany({
-    where: {
-      ownerId: parseInt(userId),
-      ...(status && {
-        OR: [
-          {
-            status: {
-              equals: status?.toUpperCase()
+    // Extract dynamic values from req.query
+    const { '/status': status, sort, orderBy, priority } = options.query;
+
+    // Convert orderBy to Prisma's expected format
+    const sortOrder = orderBy === 'desc' ? 'desc' : 'asc';
+    const res = await prisma.task.findMany({
+      where: {
+        ownerId: parseInt(userId),
+        ...(status && {
+          OR: [
+            {
+              status: {
+                equals: status?.toUpperCase()
+              }
+            },
+            {
+              priority: {
+                equals: priority?.toUpperCase()
+              }
             }
-          },
-          {
-            priority: {
-              equals: priority?.toUpperCase()
-            }
-          }
-        ]
-      })
-    },
-    include: {
-      Owner: true,
-      TaskAssignees: true,
-      Comments: true
-    },
-    orderBy: [
-      {
-        [orderBy as string]: sortOrder
-      }
-    ]
-  });
+          ]
+        })
+      },
+      include: {
+        Owner: true,
+        TaskAssignees: true,
+        Comments: true
+      },
+      // orderBy: [
+      //   {
+      //     [sort as string]: sortOrder
+      //   }
+      // ]
+    });
+
+    console.log("res", res);
+  return res;
 };

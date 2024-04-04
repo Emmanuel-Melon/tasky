@@ -8,6 +8,8 @@
         ...task,
         serachQuery: `${task.title} ${task.description}`
     }));
+
+	console.log(searchTasks);
 </script>
 
 
@@ -22,4 +24,6 @@
 			<button class="btn join-item"><Icon icon="heroicons:calendar-days" /> Search</button>
 		</div>
 	</form>
+
+	
 </div>
