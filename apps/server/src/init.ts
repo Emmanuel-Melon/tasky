@@ -2,6 +2,7 @@ import routers from "./routers";
 const express = require("express");
 import cors from "cors";
 import * as helmet from "helmet";
+import { catchErrors } from "./middleware/errors";
 
 export function init(app: any) {
   app.use(cors());
@@ -11,4 +12,5 @@ export function init(app: any) {
   app.use(express.json({ limit: "50mb" }));
   app.use(express.urlencoded({ extended: true }));
   app.use(routers);
+  app.use(catchErrors);
 }

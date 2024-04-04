@@ -2,7 +2,7 @@
 	import { enhance } from '$app/forms';
 	import { Input } from '@repo/ui';
 	import toast, { Toaster } from 'svelte-french-toast';
-    export let listId: string;
+	export let listId: string;
 </script>
 
 <form
@@ -15,7 +15,7 @@
 		});
 	}}
 >
-<input type="hidden" name="listId" value="{listId}" />
+	<input type="hidden" name="kanbanListId" value={listId} />
 	<Input type="text" placeholder="Title" name="title" />
 	<button class="btn btn-sm btn-outline w-full">Save Task</button>
 </form>

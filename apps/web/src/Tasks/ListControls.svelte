@@ -104,10 +104,10 @@
 
 		<div class="join join-vertical lg:join-horizontal">
 			<button class={`btn btn-sm join-item btn-outline`}
-				><Icon icon="heroicons:queue-list" />Prev</button
+				><Icon icon="heroicons:arrow-left" />Prev</button
 			>
 			<button class={`btn btn-sm join-item btn-accent`}
-				>Next <Icon icon="heroicons:rectangle-group" /></button
+				>Next <Icon icon="heroicons:arrow-right" /></button
 			>
 		</div>
 	</div>

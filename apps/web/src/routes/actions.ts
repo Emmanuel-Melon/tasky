@@ -29,7 +29,7 @@ export const saveTaskAction = async ({ request }) => {
 		const parsedFormData = parseFormData(await request.formData());
 
 		const {
-			formData: { title, deadline, description, ownerId }
+			formData: { title, deadline, description, ownerId, kanbanListId }
 		} = validateFormData(parsedFormData, taskSchema);
 
 		const res = await createNewTask({
@@ -37,7 +37,8 @@ export const saveTaskAction = async ({ request }) => {
 			description,
 			ownerId: parseInt(ownerId),
 			deadline: new Date(deadline),
-			status: 'COMPLETED'
+			status: 'COMPLETED',
+			kanbanListId: parseInt(kanbanListId)
 		});
 
 		console.log(res);
