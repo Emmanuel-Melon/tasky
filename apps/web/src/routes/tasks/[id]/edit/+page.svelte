@@ -12,6 +12,8 @@
 	} = $page;
 
 	let updating = false;
+
+	export let form;
 </script>
 
 <section class="space-y-4">
@@ -37,7 +39,7 @@
 					toast.success('Updated Task', {
 						position: 'bottom-center'
 					});
-					await goto('/');
+					
 				}}
 			>
 				<input
