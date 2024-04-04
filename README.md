@@ -42,6 +42,13 @@ A settings page is available for users to manage their personal information and 
 
 <img width="1440" alt="Screenshot 2024-04-04 at 2 17 12 AM" src="https://github.com/Emmanuel-Melon/tasky/assets/21015204/7689979b-c607-4d17-ab94-07df8ea8c469">
 
+### Fallback Pages
+
+I've implemented error pages for unexpected issues, designed appealing and informative empty states for scenarios with no content, and created interactive guides and tutorials for effective app navigation. These features enhance the user experience, making it easy to recover from errors, understand empty states, and utilize the app effectively.
+
+<img width="1440" alt="Screenshot 2024-04-04 at 2 35 14 AM" src="https://github.com/Emmanuel-Melon/tasky/assets/21015204/7585425f-89fc-42c3-8e4b-f9a249198f83">
+
+
 ## Getting Started
 
 You can run the app to view the following methods:
