@@ -1,5 +1,6 @@
 // src/hooks.server.js
-export async function handle({ request, resolve }) {
+export async function handle({ event, request, resolve }) {
+    console.log("hello", event.cookies.get("token"));
     // Assuming you have a way to retrieve the user ID, e.g., from a session or a cookie
     const userId = "3";
 

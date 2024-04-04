@@ -4,24 +4,40 @@ import { Argon2id } from 'oslo/password';
 import { lucia } from '../../lib/auth';
 import * as jwt from "jsonwebtoken";
 import { secret } from '../../config';
+import bcrypt from 'bcryptjs';
 
 export function generateJWT(params: any): string {
   const payload = {
-    hello: "world"
+    ...params
   };
   return jwt.sign(payload, secret);
 }
 
-export const loginUser = async (userId: string): Promise<any> => {
-
-  const token = generateJWT("hello");
-  // const user = await prisma.user.findUnique({
-  //   where: {
-  //     id: parseInt(userId)
-  //   }
-  // });
-  return Promise.resolve({
-
-    token
+export const loginUser = async (userAttributes: any): Promise<any> => {
+  const { email, password } = userAttributes;
+  // Find the user by email
+  const user = await prisma.user.findUnique({
+     where: {
+       email: email
+     }
   });
-};
+ 
+  if (!user) {
+     throw new Error('User not found');
+  }
+ 
+  // Verify the password
+  // @ts-ignore
+  const isPasswordValid = await bcrypt.compare(password, user?.password);
+ 
+  if (!isPasswordValid) {
+     throw new Error('Invalid password');
+  }
+ 
+  // Generate a JWT token for the user
+  const token = generateJWT({ ...user, userId: user.id });
+ 
+  return Promise.resolve({
+     token
+  });
+ };

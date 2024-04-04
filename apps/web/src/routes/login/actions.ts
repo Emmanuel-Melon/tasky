@@ -2,21 +2,28 @@ import { z } from 'zod';
 import type { ZodErrorMap, ZodObject } from 'zod';
 import { fail } from '@sveltejs/kit';
 import { parseFormData, validateFormData } from "@repo/lib/formData";
+import { loginUser } from '$lib/data/users';
 
 const userSchema = z.object({
-	username: z.string(),
+	email: z.string(),
 	password: z.string()
 });
 
 export const loginUserAction = async ({ request }) => {
 	try {
 		const parsedFormData = parseFormData(await request.formData());
-		console.log('form data', parsedFormData);
-
 		const {
-			formData: { username, password }
+			formData: { email, password }
 		} = validateFormData(parsedFormData, userSchema);
-		console.log('login');
+		const user = await loginUser({
+			email,
+			password
+		})
+		return {
+			headers: {
+				'Set-Cookie': `token=${user.token}; Path=/; HttpOnly; Secure; SameSite=Lax`
+			}
+		};
 	} catch (error) {
 		console.log(error);
 		return fail(400, {
